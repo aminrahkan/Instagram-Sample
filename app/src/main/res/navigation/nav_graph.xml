@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/wallFragment">
+
+    <fragment
+        android:id="@+id/wallFragment"
+        android:name="ir.aminrahkan.instagramsample.presentation.ui.wall.WallFragment"
+        android:label="WallFragment" >
+        <action
+            android:id="@+id/action_wallFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="ir.aminrahkan.instagramsample.presentation.ui.detail.DetailFragment"
+        android:label="DetailFragment" />
+</navigation>
