@@ -7,23 +7,22 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ir.aminrahkan.instagramsample.R
-import ir.aminrahkan.instagramsample.data.model.PostModel
-
+import ir.aminrahkan.instagramsample.data.db.entities.Post
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  
 // Date : 12/12/22 - 2022
 // Project name : Instagram Sample
 
 
-class PostListAdapter : PagingDataAdapter<PostModel, RecyclerView.ViewHolder>(DiffComparator) {
+class PostListAdapter : PagingDataAdapter<Post, RecyclerView.ViewHolder>(DiffComparator) {
 
     companion object {
-        private val DiffComparator = object : DiffUtil.ItemCallback<PostModel>() {
+        private val DiffComparator = object : DiffUtil.ItemCallback<Post>() {
 
-            override fun areItemsTheSame(oldItem: PostModel, newItem: PostModel): Boolean =
+            override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean =
                 oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: PostModel, newItem: PostModel): Boolean =
+            override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean =
                 oldItem == newItem
 
         }
@@ -47,7 +46,7 @@ class PostListAdapter : PagingDataAdapter<PostModel, RecyclerView.ViewHolder>(Di
             }
         }
 
-        fun bindView(item: PostModel?) {
+        fun bindView(item: Post?) {
 
         }
     }

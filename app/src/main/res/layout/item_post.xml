@@ -24,7 +24,6 @@
                 android:id="@+id/ivAvatar"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:contentDescription="@string/desc_doggo"
                 android:maxHeight="300dp"
                 android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
@@ -35,7 +34,6 @@
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_gravity="center"
-                android:contentDescription="@string/desc_doggo"
                 android:maxHeight="300dp"
                 android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
