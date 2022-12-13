@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/wallFragment"
-        android:name="ir.aminrahkan.instagramsample.presentation.ui.wall.WallFragment"
+        android:name="ir.aminrahkan.instagramsample.presentation.ui.wall.PostListFragment"
         android:label="WallFragment" >
         <action
             android:id="@+id/action_wallFragment_to_detailFragment"
