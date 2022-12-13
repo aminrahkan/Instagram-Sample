@@ -16,7 +16,10 @@ import ir.aminrahkan.instagramsample.data.db.entities.Post
 interface PostDao {
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertAllPost()
+    suspend fun insertAllPost(remoteKey: List<Post>)
+
+    @Insert(onConflict = REPLACE)
+    suspend fun insertPost(post: Post)
 
     @Query("SELECT * FROM posts_data ORDER BY id ASC LIMIT :limit OFFSET :offset")
     suspend fun getAllPost(limit: Int, offset: Int): List<Post>

@@ -4,9 +4,16 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
+import dagger.hilt.android.AndroidEntryPoint
 import ir.aminrahkan.instagramsample.R
+import ir.aminrahkan.instagramsample.data.db.AppDatabase
+import ir.aminrahkan.instagramsample.data.db.entities.Post
 import ir.aminrahkan.instagramsample.databinding.ActivityMainBinding
 import ir.aminrahkan.instagramsample.presentation.base.BaseActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.concurrent.thread
 
 
@@ -14,12 +21,14 @@ import kotlin.concurrent.thread
 // Date : 12/11/22 - 2022
 // Project name : Instagram Sample
 
-
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navHost: NavHostFragment
 
+    @Inject
+    lateinit var appDb: AppDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,14 +36,16 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
 
         initNavigation()
+//        initAppData()
+    }
 
-/*
-        thread {
-            Thread.sleep(7000)
-            runOnUiThread {
-            navHost.navController.navigate(R.id.action_wallFragment_to_detailFragment)
+    private fun initAppData() {
+        CoroutineScope(Dispatchers.IO).launch {
+            (0..100).forEach {
+                appDb.postDao().insertPost(Post(0, "", "amin$it", "https://cdn2.thedogapi.com/images/HJf4jl9VX_1280.jpg", true, it + 10, it * 2,""))
             }
-        }*/
+        }
+
     }
 
     private fun initNavigation() {

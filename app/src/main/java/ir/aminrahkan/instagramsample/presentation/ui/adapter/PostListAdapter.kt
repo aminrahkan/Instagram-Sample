@@ -3,9 +3,11 @@ package ir.aminrahkan.instagramsample.presentation.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import ir.aminrahkan.instagramsample.R
 import ir.aminrahkan.instagramsample.data.db.entities.Post
 
@@ -46,8 +48,9 @@ class PostListAdapter : PagingDataAdapter<Post, RecyclerView.ViewHolder>(DiffCom
             }
         }
 
+        var imgPost: ImageView = view.findViewById(R.id.ivPost)
         fun bindView(item: Post?) {
-
+            imgPost.load(item?.imageAddress) { placeholder(R.drawable.placeholder) }
         }
     }
 }

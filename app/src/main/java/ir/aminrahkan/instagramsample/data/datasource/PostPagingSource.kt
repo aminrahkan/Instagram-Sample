@@ -5,9 +5,7 @@ import androidx.paging.PagingState
 import ir.aminrahkan.instagramsample.app.constant.PagingConstant
 import ir.aminrahkan.instagramsample.data.db.dao.PostDao
 import ir.aminrahkan.instagramsample.data.db.entities.Post
-import ir.aminrahkan.instagramsample.data.model.PostModel
 import kotlinx.coroutines.delay
-import java.io.IOException
 
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  
@@ -25,20 +23,14 @@ class PostPagingSource(private val postDao: PostDao) : PagingSource<Int, Post>()
             val entities = postDao.getAllPost(params.loadSize, page * params.loadSize)
 
             // simulate page loading
-            if (page != 0) delay(1000)
+            if (page != 0) delay(1500)
 
             LoadResult.Page(
                 data = entities,
                 prevKey = if (page == PagingConstant.DEFAULT_PAGE_INDEX) null else page - 1,
                 nextKey = if (entities.isEmpty()) null else page + 1
             )
-//            val response = doggoApiService.getDoggoImages(page, params.loadSize)
 
-        /*    LoadResult.Page(
-                response,
-                prevKey = if (page == PagingConstant.DEFAULT_PAGE_INDEX) null else page - 1,
-                nextKey = if (response.isEmpty()) null else page + 1
-            )*/
         } catch (exception: Exception) {
             return LoadResult.Error(exception)
         }

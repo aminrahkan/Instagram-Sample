@@ -25,5 +25,7 @@ data class Post(
     @ColumnInfo(name = "like_count")
     val likeCount: Int,
     @ColumnInfo(name = "comment_count")
-    val commentCount: Int
+    val commentCount: Int,
+    @ColumnInfo(name = "caption")
+    val caption: String
 )

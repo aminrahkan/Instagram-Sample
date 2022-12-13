@@ -25,14 +25,13 @@ class DbModule {
     @Provides
     @Singleton
     fun provideDb(@ApplicationContext context: Context): AppDatabase {
-        return Room.databaseBuilder(context, AppDatabase::class.java, DbConstant.DATA_BASE_NAME)
-            .build()
+        return Room.databaseBuilder(context, AppDatabase::class.java, DbConstant.DATA_BASE_NAME).createFromAsset("database/insta_db.db").build()
     }
 
     @Provides
     @Singleton
-    fun providePostDao(): PostDao {
-        return PostDao()
+    fun providePostDao(appDatabase: AppDatabase): PostDao {
+        return appDatabase.postDao()
     }
 
 }

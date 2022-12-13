@@ -4,7 +4,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import ir.aminrahkan.instagramsample.app.constant.PagingConstant
-import ir.aminrahkan.instagramsample.data.model.PostModel
+import ir.aminrahkan.instagramsample.data.datasource.PostPagingSource
+import ir.aminrahkan.instagramsample.data.db.dao.PostDao
+import ir.aminrahkan.instagramsample.data.db.entities.Post
 import kotlinx.coroutines.flow.Flow
 
 
@@ -13,32 +15,17 @@ import kotlinx.coroutines.flow.Flow
 // Project name : Instagram Sample
 
 
-class PostRepository() {
 
+class PostRepository(private val postDao: PostDao) {
 
-    fun getPostsFromDb(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<PostModel>> {
+    fun getPostsFromDb(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<Post>> {
 
-        //TODO Database Handle
-        //if (appDatabase == null) throw IllegalStateException("Database is not initialized")
-
-        val pagingSourceFactory = {
-            //appDatabase.getDoggoImageModelDao().getAllDoggoModel()
-        }
         return Pager(
-            config = pagingConfig,
-            pagingSourceFactory = pagingSourceFactory,
-            remoteMediator = DoggoMediator(doggoApiService, appDatabase)
-        ).flow
+            pagingConfig
+        ) {
+            PostPagingSource(postDao)
+        }.flow
     }
-
-    /*
-    fun getPostFromApi(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<PostModel>> {
-        return Pager(
-            config = pagingConfig,
-            pagingSourceFactory = { PostPagingSource(doggoApiService) }
-        ).flow
-    }
-    */
 
 
     private fun getDefaultPageConfig(): PagingConfig {

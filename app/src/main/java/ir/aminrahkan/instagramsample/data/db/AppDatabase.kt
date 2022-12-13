@@ -2,6 +2,7 @@ package ir.aminrahkan.instagramsample.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import ir.aminrahkan.instagramsample.data.db.dao.PostDao
 import ir.aminrahkan.instagramsample.data.db.entities.Post
 
 
@@ -11,5 +12,6 @@ import ir.aminrahkan.instagramsample.data.db.entities.Post
 
 @Database(entities = [Post::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
+    abstract fun postDao(): PostDao
 
 }

@@ -30,12 +30,12 @@
 
 
             <ImageView
-                android:id="@+id/ivDoggoMain"
+                android:id="@+id/ivPost"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_gravity="center"
                 android:maxHeight="300dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <TextView

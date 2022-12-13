@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ir.aminrahkan.instagramsample.databinding.FragmentWallBinding
+import ir.aminrahkan.instagramsample.presentation.ui.adapter.MainLoadStateAdapter
 import ir.aminrahkan.instagramsample.presentation.ui.adapter.PostListAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -53,12 +54,15 @@ class PostListFragment : Fragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
 
         binding.rvPostList.layoutManager = layoutManager
-        binding.rvPostList.adapter = adapter
+        binding.rvPostList.adapter = adapter.withLoadStateFooter(
+            MainLoadStateAdapter()
+        )
     }
 
 
     private fun fetchPostList() {
         lifecycleScope.launch {
+
             postListViewModel.getPostsFromDb().distinctUntilChanged().collectLatest {
                 adapter.submitData(it)
             }

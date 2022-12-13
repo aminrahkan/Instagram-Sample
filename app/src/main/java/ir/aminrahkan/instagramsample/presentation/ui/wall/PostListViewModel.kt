@@ -1,8 +1,11 @@
 package ir.aminrahkan.instagramsample.presentation.ui.wall
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import ir.aminrahkan.instagramsample.data.model.PostModel
+import androidx.paging.cachedIn
+import dagger.hilt.android.lifecycle.HiltViewModel
+import ir.aminrahkan.instagramsample.data.db.entities.Post
 import ir.aminrahkan.instagramsample.data.repository.PostRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -12,18 +15,14 @@ import javax.inject.Inject
 // Date : 12/12/22 - 2022
 // Project name : Instagram Sample
 
+@HiltViewModel
+class PostListViewModel @Inject constructor(private var postRepository: PostRepository) :
+    ViewModel() {
 
-class PostListViewModel() : ViewModel() {
 
-    @Inject
-    lateinit var postRepository: PostRepository
-
-    fun getPostsFromDb(): Flow<PagingData<PostModel>> {
-        return postRepository.getPostsFromDb()
+    fun getPostsFromDb(): Flow<PagingData<Post>> {
+        return postRepository.getPostsFromDb().cachedIn(viewModelScope)
     }
 
-    /*fun getPostsFromApi(): Flow<PagingData<PostModel>>{
-        return
-    }*/
 
 }

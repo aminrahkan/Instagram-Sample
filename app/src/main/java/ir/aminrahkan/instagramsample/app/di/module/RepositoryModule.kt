@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import ir.aminrahkan.instagramsample.data.db.AppDatabase
 import ir.aminrahkan.instagramsample.data.repository.PostRepository
 import javax.inject.Singleton
 
@@ -18,7 +19,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun providePostRepository(): PostRepository {
-        return PostRepository()
+    fun providePostRepository(appDatabase: AppDatabase): PostRepository {
+        return PostRepository(appDatabase.postDao())
     }
 }

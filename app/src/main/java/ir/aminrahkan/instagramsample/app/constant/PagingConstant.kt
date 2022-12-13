@@ -8,5 +8,5 @@ package ir.aminrahkan.instagramsample.app.constant
 
 object PagingConstant {
     const val DEFAULT_PAGE_INDEX = 0
-    const val DEFAULT_PAGE_SIZE = 10
+    const val DEFAULT_PAGE_SIZE = 5
 }
