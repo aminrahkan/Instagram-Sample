@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import ir.aminrahkan.instagramsample.R
+import ir.aminrahkan.instagramsample.app.utils.getSuitableSizeForImage
 import ir.aminrahkan.instagramsample.data.db.entities.Post
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  
@@ -48,9 +50,37 @@ class PostListAdapter : PagingDataAdapter<Post, RecyclerView.ViewHolder>(DiffCom
             }
         }
 
-        var imgPost: ImageView = view.findViewById(R.id.ivPost)
+        private var imgPost: ImageView = view.findViewById(R.id.ivPost)
+        private var imgAvatar: ImageView = view.findViewById(R.id.ivAvatar)
+        private var txtLikedBy: TextView = view.findViewById(R.id.tv_liked_by)
+        private var txtCommentCount: TextView = view.findViewById(R.id.tv_comment_count)
+        private var txtCaption: TextView = view.findViewById(R.id.tv_caption)
+        private var txtUserName: TextView = view.findViewById(R.id.tv_user_name)
+
         fun bindView(item: Post?) {
+            imgPost.layoutParams.height = getSuitableSizeForImage(itemView.context)
+
+
             imgPost.load(item?.imageAddress) { placeholder(R.drawable.placeholder) }
+            imgAvatar.load(item?.userAvatar)
+
+            val likedByStringBuilder = StringBuilder()
+            likedByStringBuilder.append(itemView.context.getString(R.string.likedy_by)).append(" ")
+                .append(item?.likeCount.toString()).append(" ").append(
+                    itemView.context.getString(
+                        R.string.people
+                    )
+                )
+            txtLikedBy.text = likedByStringBuilder.toString()
+
+            txtUserName.text = item?.userName
+            txtCaption.text = item?.caption
+
+            val commentCountStringBuilder =
+                StringBuilder().append(item?.commentCount.toString()).append(" ")
+                    .append(itemView.context.getString(R.string.comments))
+            txtCommentCount.text = commentCountStringBuilder.toString()
+
         }
     }
 }
