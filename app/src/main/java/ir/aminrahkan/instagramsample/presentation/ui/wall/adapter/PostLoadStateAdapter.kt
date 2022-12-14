@@ -1,4 +1,4 @@
-package ir.aminrahkan.instagramsample.presentation.ui.adapter
+package ir.aminrahkan.instagramsample.presentation.ui.wall.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import ir.aminrahkan.instagramsample.databinding.LoadStateViewBinding
 // Project name : Instagram Sample
 
 
-class MainLoadStateAdapter : LoadStateAdapter<MainLoadStateAdapter.LoadStateViewHolder>() {
+class PostLoadStateAdapter : LoadStateAdapter<PostLoadStateAdapter.LoadStateViewHolder>() {
 
     inner class LoadStateViewHolder(val binding: LoadStateViewBinding) :
         RecyclerView.ViewHolder(binding.root)

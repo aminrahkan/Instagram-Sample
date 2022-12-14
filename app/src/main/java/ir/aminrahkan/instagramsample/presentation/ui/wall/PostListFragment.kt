@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ir.aminrahkan.instagramsample.databinding.FragmentWallBinding
-import ir.aminrahkan.instagramsample.presentation.ui.adapter.MainLoadStateAdapter
-import ir.aminrahkan.instagramsample.presentation.ui.adapter.PostListAdapter
+import ir.aminrahkan.instagramsample.presentation.ui.wall.adapter.PostLoadStateAdapter
+import ir.aminrahkan.instagramsample.presentation.ui.wall.adapter.PostListAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
@@ -47,8 +47,10 @@ class PostListFragment : Fragment() {
 
     private fun initMember() {
         adapter = PostListAdapter(PostListAdapter.OnClickListener { post ->
+
             val action = PostListFragmentDirections.actionWallFragmentToDetailFragment(post)
             findNavController().navigate(action)
+
         })
     }
 
@@ -58,7 +60,7 @@ class PostListFragment : Fragment() {
 
         binding.rvPostList.layoutManager = layoutManager
         binding.rvPostList.adapter = adapter.withLoadStateFooter(
-            MainLoadStateAdapter()
+            PostLoadStateAdapter()
         )
     }
 

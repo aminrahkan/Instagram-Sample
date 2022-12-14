@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
 // Date : 12/12/22 - 2022
 // Project name : Instagram Sample
 
-@Entity(tableName = "posts_data")
+@Entity(tableName = "posts_table")
 @Parcelize
 data class Post(
     @PrimaryKey(autoGenerate = true)

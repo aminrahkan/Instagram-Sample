@@ -1,4 +1,4 @@
-package ir.aminrahkan.instagramsample.presentation.ui.adapter
+package ir.aminrahkan.instagramsample.presentation.ui.wall.adapter
 
 import android.view.LayoutInflater
 import android.view.View

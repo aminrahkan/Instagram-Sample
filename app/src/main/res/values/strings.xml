@@ -5,5 +5,7 @@
     <string name="comments">Comments</string>
     <string name="likedy_by">Liked By</string>
     <string name="people">People</string>
+    <string name="post">Post</string>
+    <string name="add_a_comment">Add a comment...</string>
 
 </resources>

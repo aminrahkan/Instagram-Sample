@@ -2,11 +2,10 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id "org.jetbrains.kotlin.kapt"
     id 'com.google.dagger.hilt.android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
-//    id 'androidx.navigation.safeargs.kotlin'
-
 }
 
 android {
@@ -93,6 +92,5 @@ dependencies {
     def coil_version = "2.2.2"
     implementation("io.coil-kt:coil:$coil_version")
     //endregion
-    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
 
 }

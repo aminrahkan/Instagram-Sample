@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import ir.aminrahkan.instagramsample.data.db.entities.Post
+import ir.aminrahkan.instagramsample.data.db.entities.Comment
 
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  
@@ -13,15 +13,15 @@ import ir.aminrahkan.instagramsample.data.db.entities.Post
 
 
 @Dao
-interface PostDao {
+interface CommentDao {
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertAllPost(remoteKey: List<Post>)
+    suspend fun insertAllComment(remoteKey: List<Comment>)
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertPost(post: Post)
+    suspend fun insertComment(comment: Comment)
 
-    @Query("SELECT * FROM posts_table ORDER BY id ASC LIMIT :limit OFFSET :offset")
-    suspend fun getAllPost(limit: Int, offset: Int): List<Post>
+    @Query("SELECT * FROM comment_table ORDER BY id DESC LIMIT :limit OFFSET :offset")
+    suspend fun getAllComment(limit: Int, offset: Int): List<Comment>
 
 }

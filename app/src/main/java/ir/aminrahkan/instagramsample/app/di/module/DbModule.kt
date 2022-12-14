@@ -9,6 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ir.aminrahkan.instagramsample.app.constant.DbConstant
 import ir.aminrahkan.instagramsample.data.db.AppDatabase
+import ir.aminrahkan.instagramsample.data.db.dao.CommentDao
 import ir.aminrahkan.instagramsample.data.db.dao.PostDao
 import javax.inject.Singleton
 
@@ -32,6 +33,12 @@ class DbModule {
     @Singleton
     fun providePostDao(appDatabase: AppDatabase): PostDao {
         return appDatabase.postDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentDao(appDatabase: AppDatabase): CommentDao {
+        return appDatabase.commentDao()
     }
 
 }

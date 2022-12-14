@@ -7,4 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="btn_post_color">#1280D7</color>
+    <color name="divider">#31767474</color>
 </resources>
