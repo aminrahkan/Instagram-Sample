@@ -1,8 +1,6 @@
 package ir.aminrahkan.instagramsample.presentation.ui
 
 import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import ir.aminrahkan.instagramsample.R
@@ -14,7 +12,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.concurrent.thread
 
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  
@@ -42,7 +39,18 @@ class MainActivity : BaseActivity() {
     private fun initAppData() {
         CoroutineScope(Dispatchers.IO).launch {
             (0..100).forEach {
-                appDb.postDao().insertPost(Post(0, "", "amin$it", "https://cdn2.thedogapi.com/images/HJf4jl9VX_1280.jpg", true, it + 10, it * 2,""))
+                appDb.postDao().insertPost(
+                    Post(
+                        0,
+                        "",
+                        "amin$it",
+                        "https://cdn2.thedogapi.com/images/HJf4jl9VX_1280.jpg",
+                        true,
+                        it + 10,
+                        it * 2,
+                        ""
+                    )
+                )
             }
         }
 

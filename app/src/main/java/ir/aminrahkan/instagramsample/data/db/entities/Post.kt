@@ -1,8 +1,10 @@
 package ir.aminrahkan.instagramsample.data.db.entities
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  
@@ -10,6 +12,7 @@ import androidx.room.PrimaryKey
 // Project name : Instagram Sample
 
 @Entity(tableName = "posts_data")
+@Parcelize
 data class Post(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -28,4 +31,4 @@ data class Post(
     val commentCount: Int,
     @ColumnInfo(name = "caption")
     val caption: String
-)
+) : Parcelable

@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ir.aminrahkan.instagramsample.databinding.FragmentWallBinding
@@ -27,7 +27,7 @@ class PostListFragment : Fragment() {
 
     lateinit var binding: FragmentWallBinding
     private val postListViewModel: PostListViewModel by viewModels()
-    lateinit var adapter: PostListAdapter
+    private lateinit var adapter: PostListAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,7 +46,10 @@ class PostListFragment : Fragment() {
     }
 
     private fun initMember() {
-        adapter = PostListAdapter()
+        adapter = PostListAdapter(PostListAdapter.OnClickListener { post ->
+            val action = PostListFragmentDirections.actionWallFragmentToDetailFragment(post)
+            findNavController().navigate(action)
+        })
     }
 
     private fun initViews() {

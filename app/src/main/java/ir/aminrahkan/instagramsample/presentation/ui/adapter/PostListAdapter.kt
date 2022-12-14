@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import ir.aminrahkan.instagramsample.R
 import ir.aminrahkan.instagramsample.app.utils.getSuitableSizeForImage
 import ir.aminrahkan.instagramsample.data.db.entities.Post
@@ -18,7 +18,8 @@ import ir.aminrahkan.instagramsample.data.db.entities.Post
 // Project name : Instagram Sample
 
 
-class PostListAdapter : PagingDataAdapter<Post, RecyclerView.ViewHolder>(DiffComparator) {
+class PostListAdapter(private val onClickListener: OnClickListener) :
+    PagingDataAdapter<Post, RecyclerView.ViewHolder>(DiffComparator) {
 
     companion object {
         private val DiffComparator = object : DiffUtil.ItemCallback<Post>() {
@@ -33,6 +34,13 @@ class PostListAdapter : PagingDataAdapter<Post, RecyclerView.ViewHolder>(DiffCom
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val post = getItem(position)
+        holder.itemView.setOnClickListener {
+
+            if (post != null) {
+                onClickListener.onClick(post)
+            }
+        }
         (holder as? PostViewHolder)?.bindView(item = getItem(position))
     }
 
@@ -56,12 +64,15 @@ class PostListAdapter : PagingDataAdapter<Post, RecyclerView.ViewHolder>(DiffCom
         private var txtCommentCount: TextView = view.findViewById(R.id.tv_comment_count)
         private var txtCaption: TextView = view.findViewById(R.id.tv_caption)
         private var txtUserName: TextView = view.findViewById(R.id.tv_user_name)
+        private var imgLike: ImageView = view.findViewById(R.id.ivLike)
 
         fun bindView(item: Post?) {
             imgPost.layoutParams.height = getSuitableSizeForImage(itemView.context)
 
 
             imgPost.load(item?.imageAddress) { placeholder(R.drawable.placeholder) }
+
+
             imgAvatar.load(item?.userAvatar)
 
             val likedByStringBuilder = StringBuilder()
@@ -81,8 +92,17 @@ class PostListAdapter : PagingDataAdapter<Post, RecyclerView.ViewHolder>(DiffCom
                     .append(itemView.context.getString(R.string.comments))
             txtCommentCount.text = commentCountStringBuilder.toString()
 
+            if (item?.isLiked == true) imgLike.setImageResource(R.drawable.ic_like) else imgLike.setImageResource(
+                R.drawable.ic_no_like
+            )
         }
+
     }
+
+    class OnClickListener(val clickListener: (post: Post) -> Unit) {
+        fun onClick(post: Post) = clickListener(post)
+    }
+
 }
 
 
