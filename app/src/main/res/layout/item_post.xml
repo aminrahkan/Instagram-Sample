@@ -10,8 +10,8 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:layout_marginBottom="3dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -45,6 +45,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/iv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_menu" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.cardview.widget.CardView
@@ -70,6 +83,7 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -93,6 +107,8 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
