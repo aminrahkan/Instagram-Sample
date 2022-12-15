@@ -28,8 +28,8 @@ class MainActivity : BaseActivity() {
     lateinit var appDb: AppDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         initNavigation()
@@ -61,10 +61,42 @@ class MainActivity : BaseActivity() {
             supportFragmentManager.findFragmentById(R.id.fcv_main_container) as NavHostFragment
         navHost.navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.wallFragment -> {}
-                R.id.detailFragment -> {}
+                R.id.wallFragment -> {
+                    hideToolBar()
+                }
+                R.id.detailFragment -> {
+                    showToolBar()
+                }
             }
         }
         navHost.navController.setGraph(R.navigation.nav_graph)
+    }
+
+    private fun hideToolBar() {
+        try {
+            supportActionBar!!.hide()
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun showToolBar() {
+        try {
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setDisplayShowHomeEnabled(true)
+                setDisplayShowTitleEnabled(false)
+                show()
+            }
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun backPressed() {
+        onBackPressedDispatcher.onBackPressed()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        backPressed()
+        return false
     }
 }

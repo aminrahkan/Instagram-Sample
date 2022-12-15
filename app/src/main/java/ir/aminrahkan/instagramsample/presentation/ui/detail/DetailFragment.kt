@@ -17,8 +17,6 @@ import ir.aminrahkan.instagramsample.data.db.entities.Comment
 import ir.aminrahkan.instagramsample.databinding.FragmentDetailBinding
 import ir.aminrahkan.instagramsample.presentation.ui.detail.adapter.CommentListAdapter
 import ir.aminrahkan.instagramsample.presentation.ui.detail.adapter.CommentLoadStateAdapter
-import ir.aminrahkan.instagramsample.presentation.ui.wall.adapter.PostListAdapter
-import ir.aminrahkan.instagramsample.presentation.utils.PostItemClick
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -69,10 +67,11 @@ class DetailFragment : Fragment() {
     private fun fetchCommentsList() {
 
         lifecycleScope.launch {
-            detailModelView.getCommentsFromDb(args.post.postId).distinctUntilChanged().collectLatest {
-                adapter.submitData(it)
+            detailModelView.getCommentsFromDb(args.post.postId).distinctUntilChanged()
+                .collectLatest {
+                    adapter.submitData(it)
 
-            }
+                }
         }
     }
 
@@ -80,28 +79,30 @@ class DetailFragment : Fragment() {
         binding.btnPostComment.setOnClickListener {
             lifecycleScope.launch {
 
-                detailModelView.insertComment(
-                    Comment(
-                        0,
-                        args.post.postId,
-                        binding.edComment.text.toString()
+                if (binding.edComment.text.isNotEmpty()) {
+                    detailModelView.insertComment(
+                        Comment(
+                            0,
+                            args.post.postId,
+                            binding.edComment.text.toString()
+                        )
                     )
-                )
 
-                fetchCommentsList()
-                delay(500)
-                withContext(Dispatchers.Main) {
-                    binding.edComment.text.clear()
-                    Toast.makeText(
-                        context,
-                        "Your Comment Saved",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    fetchCommentsList()
+                    delay(500)
+                    withContext(Dispatchers.Main) {
+                        binding.edComment.text.clear()
+                        Toast.makeText(
+                            context,
+                            "Your Comment Saved",
+                            Toast.LENGTH_LONG
+                        ).show()
 
-                    binding.rvCommentList.layoutManager?.scrollToPosition(0)
+                        binding.rvCommentList.layoutManager?.scrollToPosition(0)
+                    }
+
+
                 }
-
-
             }
         }
 

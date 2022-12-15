@@ -3,16 +3,12 @@ package ir.aminrahkan.instagramsample.presentation.ui.detail.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import ir.aminrahkan.instagramsample.R
-import ir.aminrahkan.instagramsample.app.utils.getSuitableSizeForImage
 import ir.aminrahkan.instagramsample.data.db.entities.Comment
-import ir.aminrahkan.instagramsample.data.db.entities.Post
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  
 // Date : 12/12/22 - 2022
