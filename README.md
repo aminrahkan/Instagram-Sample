@@ -18,5 +18,5 @@ The Instagram sample just is a simple demonstration of using below technologies 
 
 
 
-![Screenshot_1671126998](https://user-images.githubusercontent.com/1622738/207933908-a7fa1544-4641-4da6-b7d3-65842e296190.png)
-![Screenshot_1671127122](https://user-images.githubusercontent.com/1622738/207933933-bbcd1727-e3b5-496d-a072-75000a527ea8.png)
+![Screenshot_1671126998](https://user-images.githubusercontent.com/1622738/207933908-a7fa1544-4641-4da6-b7d3-65842e296190.png | width=100)
+![Screenshot_1671127122](https://user-images.githubusercontent.com/1622738/207933933-bbcd1727-e3b5-496d-a072-75000a527ea8.png | width=100)
