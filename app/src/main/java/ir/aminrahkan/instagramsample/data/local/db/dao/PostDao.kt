@@ -1,11 +1,11 @@
-package ir.aminrahkan.instagramsample.data.db.dao
+package ir.aminrahkan.instagramsample.data.local.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import androidx.room.Update
-import ir.aminrahkan.instagramsample.data.db.entities.Post
+import ir.aminrahkan.instagramsample.data.local.db.entities.Post
 
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  

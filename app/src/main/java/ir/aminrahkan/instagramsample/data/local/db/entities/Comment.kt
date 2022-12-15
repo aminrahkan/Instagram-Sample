@@ -1,4 +1,4 @@
-package ir.aminrahkan.instagramsample.data.db.entities
+package ir.aminrahkan.instagramsample.data.local.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

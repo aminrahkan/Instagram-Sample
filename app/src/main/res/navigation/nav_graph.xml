@@ -23,6 +23,6 @@
 
         <argument
             android:name="Post"
-            app:argType="ir.aminrahkan.instagramsample.data.db.entities.Post" />
+            app:argType="ir.aminrahkan.instagramsample.data.local.db.entities.Post" />
     </fragment>
 </navigation>

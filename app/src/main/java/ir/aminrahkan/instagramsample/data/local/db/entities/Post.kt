@@ -1,4 +1,4 @@
-package ir.aminrahkan.instagramsample.data.db.entities
+package ir.aminrahkan.instagramsample.data.local.db.entities
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

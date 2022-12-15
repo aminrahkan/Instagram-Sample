@@ -8,7 +8,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ir.aminrahkan.instagramsample.R
-import ir.aminrahkan.instagramsample.data.db.entities.Comment
+import ir.aminrahkan.instagramsample.data.local.db.entities.Comment
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  
 // Date : 12/12/22 - 2022

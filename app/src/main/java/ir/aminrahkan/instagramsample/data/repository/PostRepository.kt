@@ -5,8 +5,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import ir.aminrahkan.instagramsample.app.constant.PagingConstant
 import ir.aminrahkan.instagramsample.data.datasource.PostPagingSource
-import ir.aminrahkan.instagramsample.data.db.dao.PostDao
-import ir.aminrahkan.instagramsample.data.db.entities.Post
+import ir.aminrahkan.instagramsample.data.local.db.dao.PostDao
+import ir.aminrahkan.instagramsample.data.local.db.entities.Post
 import kotlinx.coroutines.flow.Flow
 
 

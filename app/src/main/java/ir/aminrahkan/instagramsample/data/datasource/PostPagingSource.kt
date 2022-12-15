@@ -3,8 +3,8 @@ package ir.aminrahkan.instagramsample.data.datasource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import ir.aminrahkan.instagramsample.app.constant.PagingConstant
-import ir.aminrahkan.instagramsample.data.db.dao.PostDao
-import ir.aminrahkan.instagramsample.data.db.entities.Post
+import ir.aminrahkan.instagramsample.data.local.db.dao.PostDao
+import ir.aminrahkan.instagramsample.data.local.db.entities.Post
 import kotlinx.coroutines.delay
 
 

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ir.aminrahkan.instagramsample.R
 import ir.aminrahkan.instagramsample.app.utils.getSuitableSizeForImage
-import ir.aminrahkan.instagramsample.data.db.entities.Post
+import ir.aminrahkan.instagramsample.data.local.db.entities.Post
 import ir.aminrahkan.instagramsample.presentation.utils.PostItemClick
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  

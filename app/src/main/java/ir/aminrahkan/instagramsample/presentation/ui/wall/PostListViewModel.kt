@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.aminrahkan.instagramsample.data.db.entities.Post
+import ir.aminrahkan.instagramsample.data.local.db.entities.Post
 import ir.aminrahkan.instagramsample.data.repository.PostRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

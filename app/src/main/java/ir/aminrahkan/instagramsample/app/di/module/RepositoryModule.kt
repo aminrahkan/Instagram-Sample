@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ir.aminrahkan.instagramsample.data.db.AppDatabase
+import ir.aminrahkan.instagramsample.data.local.db.AppDatabase
 import ir.aminrahkan.instagramsample.data.repository.CommentRepository
 import ir.aminrahkan.instagramsample.data.repository.PostRepository
 import javax.inject.Singleton

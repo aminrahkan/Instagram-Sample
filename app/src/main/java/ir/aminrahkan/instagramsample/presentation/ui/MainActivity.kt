@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import ir.aminrahkan.instagramsample.R
-import ir.aminrahkan.instagramsample.data.db.AppDatabase
-import ir.aminrahkan.instagramsample.data.db.entities.Post
+import ir.aminrahkan.instagramsample.data.local.db.AppDatabase
+import ir.aminrahkan.instagramsample.data.local.db.entities.Post
 import ir.aminrahkan.instagramsample.databinding.ActivityMainBinding
 import ir.aminrahkan.instagramsample.presentation.base.BaseActivity
 import kotlinx.coroutines.CoroutineScope
