@@ -17,12 +17,12 @@ import kotlinx.coroutines.flow.Flow
 
 class CommentRepository(private val commentDao: CommentDao) {
 
-    fun getCommentFromDb(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<Comment>> {
+    fun getCommentFromDb(postId:Int,pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<Comment>> {
 
         return Pager(
             pagingConfig
         ) {
-            CommentPagingSource(commentDao)
+            CommentPagingSource(commentDao,postId)
         }.flow
     }
 

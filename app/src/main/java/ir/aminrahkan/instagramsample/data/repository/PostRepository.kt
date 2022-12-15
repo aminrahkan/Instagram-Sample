@@ -27,6 +27,9 @@ class PostRepository(private val postDao: PostDao) {
         }.flow
     }
 
+    suspend fun updatePostLikeValue(post:Post){
+        postDao.updatePost(post)
+    }
 
     private fun getDefaultPageConfig(): PagingConfig {
         return PagingConfig(pageSize = PagingConstant.DEFAULT_PAGE_SIZE, enablePlaceholders = true)

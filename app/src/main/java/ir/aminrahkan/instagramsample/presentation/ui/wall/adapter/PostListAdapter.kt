@@ -12,6 +12,7 @@ import coil.load
 import ir.aminrahkan.instagramsample.R
 import ir.aminrahkan.instagramsample.app.utils.getSuitableSizeForImage
 import ir.aminrahkan.instagramsample.data.db.entities.Post
+import ir.aminrahkan.instagramsample.presentation.utils.PostItemClick
 
 // Developer : Amin Rahkan - Amin.Rahkan7@gmail.com  
 // Date : 12/12/22 - 2022
@@ -38,10 +39,11 @@ class PostListAdapter(private val onClickListener: OnClickListener) :
         holder.itemView.setOnClickListener {
 
             if (post != null) {
-                onClickListener.onClick(post)
+                onClickListener.onClick(post, PostItemClick.POST_CLICKED)
             }
         }
-        (holder as? PostViewHolder)?.bindView(item = getItem(position))
+
+        (holder as? PostViewHolder)?.bindView(item = getItem(position), onClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -66,11 +68,27 @@ class PostListAdapter(private val onClickListener: OnClickListener) :
         private var txtUserName: TextView = view.findViewById(R.id.tv_user_name)
         private var imgLike: ImageView = view.findViewById(R.id.ivLike)
 
-        fun bindView(item: Post?) {
+
+        fun bindView(item: Post?, onClickListener: OnClickListener) {
             imgPost.layoutParams.height = getSuitableSizeForImage(itemView.context)
 
+            imgLike.setOnClickListener {
 
-            imgPost.load(item?.imageAddress) { placeholder(R.drawable.placeholder) }
+                if (item?.isLiked == true) {
+                    imgLike.setImageResource(R.drawable.ic_no_like)
+                    item.isLiked = false
+                } else {
+                    imgLike.setImageResource(R.drawable.ic_like)
+                    item?.isLiked = true
+                }
+                if (item != null) {
+                    onClickListener.onClick(item, PostItemClick.LIKE_CLICKED)
+                }
+            }
+
+
+            imgPost.load(item?.imageAddress)
+            { placeholder(R.drawable.placeholder) }
 
 
             imgAvatar.load(item?.userAvatar)
@@ -99,10 +117,12 @@ class PostListAdapter(private val onClickListener: OnClickListener) :
 
     }
 
-    class OnClickListener(val clickListener: (post: Post) -> Unit) {
-        fun onClick(post: Post) = clickListener(post)
+    class OnClickListener(val clickListener: (post: Post, itemClicked: PostItemClick) -> Unit) {
+        fun onClick(post: Post, itemClicked: PostItemClick) =
+            clickListener(post, itemClicked)
     }
 
 }
+
 
 

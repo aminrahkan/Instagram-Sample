@@ -6,7 +6,9 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.aminrahkan.instagramsample.data.db.entities.Comment
+import ir.aminrahkan.instagramsample.data.db.entities.Post
 import ir.aminrahkan.instagramsample.data.repository.CommentRepository
+import ir.aminrahkan.instagramsample.data.repository.PostRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -16,16 +18,19 @@ import javax.inject.Inject
 // Project name : Instagram Sample
 
 @HiltViewModel
-class CommentListViewModel @Inject constructor(private var commentRepository: CommentRepository) :
+class DetailModelView @Inject constructor(private var commentRepository: CommentRepository,private var postRepository: PostRepository) :
     ViewModel() {
 
 
-    fun getCommentFromDb(): Flow<PagingData<Comment>> {
-        return commentRepository.getCommentFromDb().cachedIn(viewModelScope)
+    fun getCommentsFromDb(postId:Int): Flow<PagingData<Comment>> {
+        return commentRepository.getCommentFromDb(postId).cachedIn(viewModelScope)
     }
 
     suspend fun insertComment(comment:Comment){
         commentRepository.insertComment(comment)
+    }
+    suspend fun updatePostLikeValue(post: Post){
+        postRepository.updatePostLikeValue(post)
     }
 
 }

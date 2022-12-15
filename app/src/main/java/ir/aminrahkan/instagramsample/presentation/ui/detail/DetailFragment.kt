@@ -17,6 +17,8 @@ import ir.aminrahkan.instagramsample.data.db.entities.Comment
 import ir.aminrahkan.instagramsample.databinding.FragmentDetailBinding
 import ir.aminrahkan.instagramsample.presentation.ui.detail.adapter.CommentListAdapter
 import ir.aminrahkan.instagramsample.presentation.ui.detail.adapter.CommentLoadStateAdapter
+import ir.aminrahkan.instagramsample.presentation.ui.wall.adapter.PostListAdapter
+import ir.aminrahkan.instagramsample.presentation.utils.PostItemClick
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -31,7 +33,7 @@ import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
-    private val commentListViewModel: CommentListViewModel by viewModels()
+    private val detailModelView: DetailModelView by viewModels()
     private lateinit var binding: FragmentDetailBinding
     private lateinit var adapter: CommentListAdapter
     private val args: DetailFragmentArgs by navArgs()
@@ -67,7 +69,7 @@ class DetailFragment : Fragment() {
     private fun fetchCommentsList() {
 
         lifecycleScope.launch {
-            commentListViewModel.getCommentFromDb().distinctUntilChanged().collectLatest {
+            detailModelView.getCommentsFromDb(args.post.postId).distinctUntilChanged().collectLatest {
                 adapter.submitData(it)
 
             }
@@ -78,7 +80,7 @@ class DetailFragment : Fragment() {
         binding.btnPostComment.setOnClickListener {
             lifecycleScope.launch {
 
-                commentListViewModel.insertComment(
+                detailModelView.insertComment(
                     Comment(
                         0,
                         args.post.postId,
@@ -102,6 +104,21 @@ class DetailFragment : Fragment() {
 
             }
         }
+
+        binding.ivLike.setOnClickListener {
+            if (args.post.isLiked) {
+                binding.ivLike.setImageResource(R.drawable.ic_no_like)
+                args.post.isLiked = false
+            } else {
+                binding.ivLike.setImageResource(R.drawable.ic_like)
+                args.post.isLiked = true
+            }
+
+            lifecycleScope.launch {
+                detailModelView.updatePostLikeValue(args.post)
+            }
+        }
+
     }
 
     private fun initMember() {

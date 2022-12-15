@@ -15,14 +15,19 @@ import kotlinx.coroutines.delay
 // Project name : Instagram Sample
 
 
-class CommentPagingSource(private val commentDao: CommentDao) : PagingSource<Int, Comment>() {
+class CommentPagingSource(private val commentDao: CommentDao, private val postId: Int) :
+    PagingSource<Int, Comment>() {
 
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Comment> {
         val page = params.key ?: PagingConstant.DEFAULT_PAGE_INDEX
 
         return try {
-            val entities = commentDao.getAllComment(params.loadSize, page * params.loadSize)
+            val entities = commentDao.getCommentsByPostId(
+                params.loadSize,
+                page * params.loadSize,
+                postId = postId
+            )
 
             // simulate page loading
             if (page != 0) delay(1500)

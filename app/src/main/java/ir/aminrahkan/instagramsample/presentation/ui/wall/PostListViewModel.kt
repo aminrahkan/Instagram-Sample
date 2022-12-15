@@ -24,5 +24,9 @@ class PostListViewModel @Inject constructor(private var postRepository: PostRepo
         return postRepository.getPostsFromDb().cachedIn(viewModelScope)
     }
 
+    suspend fun updatePostLikeValue(post:Post){
+        return postRepository.updatePostLikeValue(post)
+    }
+
 
 }

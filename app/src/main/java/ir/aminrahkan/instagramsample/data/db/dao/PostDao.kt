@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
+import androidx.room.Update
+import ir.aminrahkan.instagramsample.data.db.entities.Comment
 import ir.aminrahkan.instagramsample.data.db.entities.Post
 
 
@@ -23,5 +25,8 @@ interface PostDao {
 
     @Query("SELECT * FROM posts_table ORDER BY id ASC LIMIT :limit OFFSET :offset")
     suspend fun getAllPost(limit: Int, offset: Int): List<Post>
+
+    @Update(onConflict = REPLACE)
+    suspend fun updatePost(post: Post)
 
 }

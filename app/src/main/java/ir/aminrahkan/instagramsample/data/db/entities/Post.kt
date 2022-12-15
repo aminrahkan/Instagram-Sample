@@ -24,7 +24,7 @@ data class Post(
     @ColumnInfo(name = "image_address")
     val imageAddress: String,
     @ColumnInfo(name = "is_liked")
-    val isLiked: Boolean,
+    var isLiked: Boolean,
     @ColumnInfo(name = "like_count")
     val likeCount: Int,
     @ColumnInfo(name = "comment_count")

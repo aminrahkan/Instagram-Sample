@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.aminrahkan.instagramsample.databinding.FragmentWallBinding
 import ir.aminrahkan.instagramsample.presentation.ui.wall.adapter.PostLoadStateAdapter
 import ir.aminrahkan.instagramsample.presentation.ui.wall.adapter.PostListAdapter
+import ir.aminrahkan.instagramsample.presentation.utils.PostItemClick
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
@@ -46,10 +47,20 @@ class PostListFragment : Fragment() {
     }
 
     private fun initMember() {
-        adapter = PostListAdapter(PostListAdapter.OnClickListener { post ->
+        adapter = PostListAdapter(PostListAdapter.OnClickListener { post, itemClicked ->
+            when (itemClicked) {
+                PostItemClick.POST_CLICKED -> {
+                    val action = PostListFragmentDirections.actionWallFragmentToDetailFragment(post)
+                    findNavController().navigate(action)
+                }
+                PostItemClick.LIKE_CLICKED -> {
+                    lifecycleScope.launch {
+                        postListViewModel.updatePostLikeValue(post)
+                    }
 
-            val action = PostListFragmentDirections.actionWallFragmentToDetailFragment(post)
-            findNavController().navigate(action)
+                }
+            }
+
 
         })
     }
