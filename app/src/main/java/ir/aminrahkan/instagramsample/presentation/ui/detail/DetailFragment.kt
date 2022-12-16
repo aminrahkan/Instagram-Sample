@@ -14,7 +14,6 @@ import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import ir.aminrahkan.instagramsample.R
 import ir.aminrahkan.instagramsample.data.local.db.entities.Comment
-import ir.aminrahkan.instagramsample.data.local.db.entities.Post
 import ir.aminrahkan.instagramsample.databinding.FragmentDetailBinding
 import ir.aminrahkan.instagramsample.presentation.ui.detail.adapter.CommentListAdapter
 import ir.aminrahkan.instagramsample.presentation.ui.detail.adapter.CommentLoadStateAdapter
