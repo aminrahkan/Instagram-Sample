@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.aminrahkan.instagramsample.data.local.db.entities.Post
-import ir.aminrahkan.instagramsample.data.repository.PostRepository
+import ir.aminrahkan.instagramsample.data.repository.PostRepositoryImpl
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -16,7 +16,7 @@ import javax.inject.Inject
 // Project name : Instagram Sample
 
 @HiltViewModel
-class PostListViewModel @Inject constructor(private var postRepository: PostRepository) :
+class PostListViewModel @Inject constructor(private var postRepository: PostRepositoryImpl) :
     ViewModel() {
 
 

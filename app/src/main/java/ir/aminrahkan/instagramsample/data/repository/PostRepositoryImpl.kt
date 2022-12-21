@@ -7,6 +7,7 @@ import ir.aminrahkan.instagramsample.app.constant.PagingConstant
 import ir.aminrahkan.instagramsample.data.datasource.PostPagingSource
 import ir.aminrahkan.instagramsample.data.local.db.dao.PostDao
 import ir.aminrahkan.instagramsample.data.local.db.entities.Post
+import ir.aminrahkan.instagramsample.domain.repository.PostRepository
 import kotlinx.coroutines.flow.Flow
 
 
@@ -15,23 +16,18 @@ import kotlinx.coroutines.flow.Flow
 // Project name : Instagram Sample
 
 
+class PostRepositoryImpl(private val postDao: PostDao) : PostRepository {
 
-class PostRepository(private val postDao: PostDao) {
-
-    fun getPostsFromDb(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<Post>> {
+    override fun getPostsFromDb(): Flow<PagingData<Post>> {
 
         return Pager(
-            pagingConfig
+            PagingConfig(pageSize = PagingConstant.DEFAULT_PAGE_SIZE, enablePlaceholders = true)
         ) {
             PostPagingSource(postDao)
         }.flow
     }
 
-    suspend fun updatePostLikeValue(post:Post){
+    override suspend fun updatePostLikeValue(post: Post) {
         postDao.updatePost(post)
-    }
-
-    private fun getDefaultPageConfig(): PagingConfig {
-        return PagingConfig(pageSize = PagingConstant.DEFAULT_PAGE_SIZE, enablePlaceholders = true)
     }
 }

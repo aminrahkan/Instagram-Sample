@@ -7,6 +7,7 @@ import ir.aminrahkan.instagramsample.app.constant.PagingConstant
 import ir.aminrahkan.instagramsample.data.datasource.CommentPagingSource
 import ir.aminrahkan.instagramsample.data.local.db.dao.CommentDao
 import ir.aminrahkan.instagramsample.data.local.db.entities.Comment
+import ir.aminrahkan.instagramsample.domain.repository.CommentRepository
 import kotlinx.coroutines.flow.Flow
 
 
@@ -15,22 +16,20 @@ import kotlinx.coroutines.flow.Flow
 // Project name : Instagram Sample
 
 
-class CommentRepository(private val commentDao: CommentDao) {
+class CommentRepositoryImpl(private val commentDao: CommentDao) : CommentRepository {
 
-    fun getCommentFromDb(postId:Int,pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<Comment>> {
-
+    override fun getCommentFromDb(
+        postId: Int
+    ): Flow<PagingData<Comment>> {
         return Pager(
-            pagingConfig
+            PagingConfig(pageSize = PagingConstant.DEFAULT_PAGE_SIZE, enablePlaceholders = true)
         ) {
-            CommentPagingSource(commentDao,postId)
+            CommentPagingSource(commentDao, postId)
         }.flow
     }
 
-    suspend fun insertComment(comment: Comment) {
+    override suspend fun insertComment(comment: Comment) {
         commentDao.insertComment(comment)
     }
 
-    private fun getDefaultPageConfig(): PagingConfig {
-        return PagingConfig(pageSize = PagingConstant.DEFAULT_PAGE_SIZE, enablePlaceholders = true)
-    }
 }
